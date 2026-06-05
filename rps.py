@@ -30,6 +30,14 @@ class func():
         print("Exiting....")
         print("=" * 50)
 
+    def conmsg(self):
+        print("Would you like to play again? Y/N")
+        answer = input(": ")
+        answer = answer.upper()
+        answer = answer.strip()
+        return answer
+        
+
     def resultMaker(self, u_option, b_option):
         try:
             if u_option in options and b_option in options:
@@ -109,8 +117,19 @@ class func():
                 print(f"Bot's fighter: {bot_option}")
                 print(" ")
                 self.resultMaker(user_option, bot_option)
+                
+                self.conmsg()
+                print(" ")
+                if self.conmsg == "Y":
+                    continue
+                elif self.conmsg == "N":
+                    self.exitmsg()
+                    exit
+                else:
+                    self.invalidmsg()
+                        
             else:
-                invalidmsg()
+                self.invalidmsg()
         
         
 
@@ -124,17 +143,16 @@ print("         PLAY ROCK, PAPER, SCISSORS!     ")
 startup = input("       Would you like to play? (Y/N): ")
 answer = startup.upper()
 answer = answer.strip()
-print(answer)
-
 
 if answer == "Y":
     startChecker = True
     f.main(startChecker)
     
 elif answer == "N":
-    exitmsg()
+    f.exitmsg()
+    exit
 else:
-    invalidmsg()
+    f.invalidmsg()
     
     
     
